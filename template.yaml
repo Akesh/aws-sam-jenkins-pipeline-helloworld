@@ -19,7 +19,7 @@ Resources:
       Runtime: nodejs12.x
       AutoPublishAlias: live
       DeploymentPreference:
-       Type: Canary10Percent5Minutes 
+       Type: AllAtOnce 
       Events:
         HelloWorld:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api

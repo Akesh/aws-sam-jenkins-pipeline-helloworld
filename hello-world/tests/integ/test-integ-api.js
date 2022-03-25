@@ -30,6 +30,6 @@ describe("GET api test", async () => {
 
   it("verifies if response contains my username", async () => {
     // Replace "Hello world" with your username
-    assert.include(apiResponse.data.message, "akeshpatil");
+    assert.include(apiResponse.data.message, "hello");
   });
 });

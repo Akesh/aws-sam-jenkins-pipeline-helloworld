@@ -42,8 +42,7 @@ pipeline {
       steps {
         withAWS(credentials: 'BlazePulsePipelineCredentials', region: 'us-east-1') {
           unstash 'venv'
-          //unstash 'aws-sam'          
-          sh 'which aws'
+          unstash 'aws-sam'                    
           sh 'venv/bin/sam deploy --stack-name $STACK_NAME -t template.yaml --s3-bucket $S3_BUCKET --capabilities CAPABILITY_IAM'
         }
       }

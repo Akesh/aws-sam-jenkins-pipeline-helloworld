@@ -1,7 +1,13 @@
 pipeline {
   agent any
- 
   stages {
+    stage('Install sam-cli') {
+      steps {
+        sh 'python3 -m venv venv && venv/bin/pip install aws-sam-cli'
+        stash includes: '**/venv/**/*', name: 'venv'
+      }
+    }
+
     stage('Build') {
       steps {
         unstash 'venv'
@@ -9,6 +15,7 @@ pipeline {
         stash includes: '**/.aws-sam/**/*', name: 'aws-sam'
       }
     }
+
     stage('beta') {
       environment {
         STACK_NAME = 'sam-app-beta-stage'
@@ -26,6 +33,7 @@ pipeline {
         }
       }
     }
+
     stage('prod') {
       environment {
         STACK_NAME = 'sam-app-prod-stage'
